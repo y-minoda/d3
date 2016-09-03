@@ -28,6 +28,7 @@ export {
   shuffle,
   sum,
   ticks,
+  tickStep,
   transpose,
   variance,
   zip
@@ -169,6 +170,7 @@ export {
 export {
   interpolate,
   interpolateArray,
+  interpolateDate,
   interpolateNumber,
   interpolateObject,
   interpolateRound,
@@ -177,13 +179,18 @@ export {
   interpolateTransformSvg,
   interpolateZoom,
   interpolateRgb,
+  interpolateRgbBasis,
+  interpolateRgbBasisClosed,
   interpolateHsl,
   interpolateHslLong,
   interpolateLab,
   interpolateHcl,
   interpolateHclLong,
   interpolateCubehelix,
-  interpolateCubehelixLong
+  interpolateCubehelixLong,
+  interpolateBasis,
+  interpolateBasisClosed,
+  quantize
 } from "d3-interpolate";
 
 export {
@@ -288,29 +295,7 @@ export {
   format,
   formatPrefix,
   formatLocale,
-  formatCaEs,
-  formatCsCz,
-  formatDeCh,
-  formatDeDe,
-  formatEnCa,
-  formatEnGb,
-  formatEnUs,
-  formatEsEs,
-  formatFiFi,
-  formatFrCa,
-  formatFrFr,
-  formatHeIl,
-  formatHuHu,
-  formatItIt,
-  formatJaJp,
-  formatKoKr,
-  formatMkMk,
-  formatNlNl,
-  formatPlPl,
-  formatPtBr,
-  formatRuRu,
-  formatSvSe,
-  formatZhCn,
+  formatDefaultLocale,
   formatSpecifier,
   precisionFixed,
   precisionPrefix,
@@ -325,28 +310,7 @@ export {
   isoFormat,
   isoParse,
   timeFormatLocale,
-  timeFormatCaEs,
-  timeFormatDeCh,
-  timeFormatDeDe,
-  timeFormatEnCa,
-  timeFormatEnGb,
-  timeFormatEnUs,
-  timeFormatEsEs,
-  timeFormatFiFi,
-  timeFormatFrCa,
-  timeFormatFrFr,
-  timeFormatHeIl,
-  timeFormatHuHu,
-  timeFormatItIt,
-  timeFormatJaJp,
-  timeFormatKoKr,
-  timeFormatMkMk,
-  timeFormatNlNl,
-  timeFormatPlPl,
-  timeFormatPtBr,
-  timeFormatRuRu,
-  timeFormatSvSe,
-  timeFormatZhCn
+  timeFormatDefaultLocale
 } from "d3-time-format";
 
 export {
@@ -364,24 +328,26 @@ export {
   scaleThreshold,
   scaleTime,
   scaleUtc,
-  scaleCategory10,
-  scaleCategory20b,
-  scaleCategory20c,
-  scaleCategory20,
-  scaleCubehelix,
-  scaleRainbow,
-  scaleWarm,
-  scaleCool,
-  scaleViridis,
-  scaleMagma,
-  scaleInferno,
-  scalePlasma
+  schemeCategory10,
+  schemeCategory20b,
+  schemeCategory20c,
+  schemeCategory20,
+  scaleSequential,
+  interpolateCubehelixDefault,
+  interpolateRainbow,
+  interpolateWarm,
+  interpolateCool,
+  interpolateViridis,
+  interpolateMagma,
+  interpolateInferno,
+  interpolatePlasma
 } from "d3-scale";
 
 export {
   creator,
   customEvent,
   event,
+  local,
   matcher,
   mouse,
   namespace,
@@ -398,6 +364,7 @@ export {
 
 export {
   active,
+  interrupt,
   transition
 } from "d3-transition";
 
@@ -422,7 +389,8 @@ export {
   treemapDice,
   treemapSlice,
   treemapSliceDice,
-  treemapSquarify
+  treemapSquarify,
+  treemapResquarify
 } from "d3-hierarchy";
 
 export {
@@ -436,9 +404,71 @@ export {
 } from "d3-force";
 
 export {
-  drag
+  drag,
+  dragDisable,
+  dragEnable
 } from "d3-drag";
 
 export {
   voronoi
 } from "d3-voronoi";
+
+export {
+  zoom,
+  zoomIdentity,
+  zoomTransform
+} from "d3-zoom";
+
+export {
+  brush,
+  brushX,
+  brushY,
+  brushSelection
+} from "d3-brush";
+
+export {
+  chord,
+  ribbon
+} from "d3-chord";
+
+export {
+  geoAlbers,
+  geoAlbersUsa,
+  geoArea,
+  geoAzimuthalEqualArea,
+  geoAzimuthalEqualAreaRaw,
+  geoAzimuthalEquidistant,
+  geoAzimuthalEquidistantRaw,
+  geoBounds,
+  geoCentroid,
+  geoCircle,
+  geoClipExtent,
+  geoConicConformal,
+  geoConicConformalRaw,
+  geoConicEqualArea,
+  geoConicEqualAreaRaw,
+  geoConicEquidistant,
+  geoConicEquidistantRaw,
+  geoDistance,
+  geoEquirectangular,
+  geoEquirectangularRaw,
+  geoGnomonic,
+  geoGnomonicRaw,
+  geoGraticule,
+  geoInterpolate,
+  geoLength,
+  geoMercator,
+  geoMercatorRaw,
+  geoOrthographic,
+  geoOrthographicRaw,
+  geoPath,
+  geoProjection,
+  geoProjectionMutator,
+  geoRotation,
+  geoStereographic,
+  geoStereographicRaw,
+  geoStream,
+  geoTransform,
+  geoTransverseMercator,
+  geoTransverseMercatorRaw
+} from "d3-geo";

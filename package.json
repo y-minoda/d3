@@ -1,9 +1,6 @@
 {
   "name": "d3",
-  "version": "4.0.0-alpha.40",
-  "publishConfig": {
-    "tag": "next"
-  },
+  "version": "4.2.2",
   "description": "Data-Driven Documents",
   "keywords": [
     "dom",
@@ -12,7 +9,7 @@
     "animation",
     "canvas"
   ],
-  "homepage": "https://github.com/d3/d3",
+  "homepage": "https://d3js.org",
   "license": "BSD-3-Clause",
   "author": {
     "name": "Mike Bostock",
@@ -20,6 +17,7 @@
   },
   "main": "build/d3.node.js",
   "browser": "build/d3.js",
+  "module": "index",
   "jsnext:main": "index",
   "repository": {
     "type": "git",
@@ -28,42 +26,48 @@
   "scripts": {
     "pretest": "rm -rf build && mkdir build && json2module package.json > build/package.js && bin/rollup-node",
     "test": "tape 'test/**/*-test.js'",
-    "prepublish": "npm run test && bin/rollup && uglifyjs build/d3.js -c -m -o build/d3.min.js",
-    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && cp -v build/d3.js ../d3.github.com/d3.v${VERSION}.js && cp -v build/d3.min.js ../d3.github.com/d3.v${VERSION}.min.js && cd ../d3.github.com && git add d3.v${VERSION}.js d3.v${VERSION}.min.js && git commit -m \"d3 ${VERSION}\" && git push && cd - && zip -j build/d3.zip -- LICENSE README.md build/d3.js build/d3.min.js"
+    "prepublish": "npm run test && rollup -c --banner \"$(preamble)\" -f umd -n d3 -o build/d3.js -- index.js && uglifyjs --preamble \"$(preamble)\" build/d3.js -c negate_iife=false -m -o build/d3.min.js",
+    "postpublish": "VERSION=`node -e 'console.log(require(\"./package.json\").version)'`; git push && git push --tags && cd ../d3.github.com && git pull && cp ../d3/build/d3.js d3.v4.js && cp ../d3/build/d3.min.js d3.v4.min.js && git add d3.v4.js d3.v4.min.js && git commit -m \"d3 ${VERSION}\" && git push && cd - && cd ../d3-bower && git pull && cp ../d3/LICENSE ../d3/README.md ../d3/build/d3.js ../d3/build/d3.min.js . && git add -- LICENSE README.md d3.js d3.min.js && git commit -m \"${VERSION}\" && git tag -am \"${VERSION}\" v${VERSION} && git push && git push --tags && cd - && zip -j build/d3.zip -- LICENSE README.md API.md CHANGES.md build/d3.js build/d3.min.js"
   },
   "devDependencies": {
     "json2module": "0.0",
-    "rollup": "0.26",
-    "rollup-plugin-node-resolve": "1",
+    "package-preamble": "0.0",
+    "rollup": "0.34",
+    "rollup-plugin-ascii": "0.0",
+    "rollup-plugin-node-resolve": "2",
     "tape": "4",
     "uglify-js": "2"
   },
   "dependencies": {
-    "d3-array": "0.7.1",
-    "d3-axis": "0.3.1",
-    "d3-collection": "0.1.2",
-    "d3-color": "0.4.2",
-    "d3-dispatch": "0.4.3",
-    "d3-drag": "0.1.2",
-    "d3-dsv": "0.3.2",
-    "d3-ease": "0.7.0",
-    "d3-force": "0.6.2",
-    "d3-format": "0.5.1",
-    "d3-hierarchy": "0.2.2",
-    "d3-interpolate": "0.7.0",
-    "d3-path": "0.1.5",
-    "d3-polygon": "0.2.1",
-    "d3-quadtree": "0.7.2",
-    "d3-queue": "2.0.3",
-    "d3-random": "0.2.1",
-    "d3-request": "0.4.6",
-    "d3-scale": "0.7.0",
-    "d3-selection": "0.7.2",
-    "d3-shape": "0.6.0",
-    "d3-time": "0.2.5",
-    "d3-time-format": "0.3.2",
-    "d3-timer": "0.4.3",
-    "d3-transition": "0.2.8",
-    "d3-voronoi": "0.3.2"
+    "d3-array": "1.0.1",
+    "d3-axis": "1.0.3",
+    "d3-brush": "1.0.2",
+    "d3-chord": "1.0.2",
+    "d3-collection": "1.0.1",
+    "d3-color": "1.0.1",
+    "d3-dispatch": "1.0.1",
+    "d3-drag": "1.0.1",
+    "d3-dsv": "1.0.1",
+    "d3-ease": "1.0.1",
+    "d3-force": "1.0.2",
+    "d3-format": "1.0.2",
+    "d3-geo": "1.2.3",
+    "d3-hierarchy": "1.0.2",
+    "d3-interpolate": "1.1.1",
+    "d3-path": "1.0.1",
+    "d3-polygon": "1.0.1",
+    "d3-quadtree": "1.0.1",
+    "d3-queue": "3.0.2",
+    "d3-random": "1.0.1",
+    "d3-request": "1.0.2",
+    "d3-scale": "1.0.3",
+    "d3-selection": "1.0.2",
+    "d3-shape": "1.0.2",
+    "d3-time": "1.0.2",
+    "d3-time-format": "2.0.2",
+    "d3-timer": "1.0.2",
+    "d3-transition": "1.0.1",
+    "d3-voronoi": "1.0.2",
+    "d3-zoom": "1.0.3"
   }
 }
